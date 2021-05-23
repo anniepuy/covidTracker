@@ -7,6 +7,11 @@
     focus:outline-none hover:bg-green-600">
       Clear Countries
     </button>
+    <!--Placeholder for refresh modal-->
+    <button @click="" class="bg-green-700 text-white rounded p-3 mt-10 
+    focus:outline-none hover:bg-green-600">
+      Clear
+    </button>
   </main>
 
   <main v-else class="flex flex-col align-center jusitfy-center text-center">
