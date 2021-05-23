@@ -8,10 +8,11 @@
       Clear Countries
     </button>
     <!--Placeholder for refresh modal-->
-    <button @click="" class="bg-green-700 text-white rounded p-3 mt-10 
-    focus:outline-none hover:bg-green-600">
-      Clear
+    <button type="button" class="btn" @click="showModal">
+      Open Modal
     </button>
+
+    <Modal v-show="isModalVisible" @close="closeModal"/>
   </main>
 
   <main v-else class="flex flex-col align-center jusitfy-center text-center">
@@ -26,6 +27,7 @@
 import DataTitle from '@/components/DataTitle';
 import DataBoxes from '@/components/DataBoxes';
 import CountrySelect from '@/components/CountrySelect';
+import Modal from '@/components/Modal';
 
 export default {
   name: 'Home',
@@ -33,6 +35,7 @@ export default {
     DataTitle,
     DataBoxes,
     CountrySelect,
+    Modal,
   },
   data() {
     return {
@@ -41,10 +44,17 @@ export default {
       dataDate: '',
       stats: {},
       countries: [],
-      loadingImage: require('../assets/hourglass.gif')
+      loadingImage: require('../assets/hourglass.gif'),
+      isModalVisible: false,
     }
   },
   methods: {
+    showModal() {
+      this.isModalVisible = true;
+    },
+    closeModal() {
+      this.isModalVisible = false;
+    },
     async fetchCovidData() {
         const res = await fetch('https://api.covid19api.com/summary')
         const data = await res.json()
